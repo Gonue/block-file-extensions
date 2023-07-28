@@ -1,8 +1,8 @@
 <template>
   <nav>
-    <router-link to="/file"> 파일 관리</router-link> |
     <router-link to="/">메인</router-link> |
-    <router-link to="/fixedExtension">고정 확장자 관리</router-link>
+    <router-link to="/fixedExtension">고정 확장자 관리</router-link> |
+    <router-link to="/file"> 파일 관리</router-link>
   </nav>
   <router-view/>
 </template>
