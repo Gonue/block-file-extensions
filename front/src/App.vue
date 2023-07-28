@@ -1,39 +1,11 @@
 <template>
-  <div>
-    <div class="menu">
-      <a> 
-        파일 확장자 차단
-      </a>
-    </div>
-
-
-
-    <div>
-      <h3>파일 업로드</h3>
-    </div>
-
-    <div> 
-      <h3>고정 확장자</h3>
-      <form></form>
-      
-    </div>
-
-    <div>
-      <h3>커스텀 확장자</h3>
-    </div>
-    
-    
-  </div>
+  <nav>
+    <router-link to="/file"> 파일 관리</router-link> |
+    <router-link to="/">메인</router-link> |
+    <router-link to="/fixedExtension">고정 확장자 관리</router-link>
+  </nav>
+  <router-view/>
 </template>
-
-<script>
-
-export default {
-  name: 'App',
-  components: {
-  }
-}
-</script>
 
 <style>
 #app {
@@ -42,17 +14,19 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
-.menu {
-  background: darkslateblue;
-  padding: 25px;
-  border-radius: 5px;
+nav {
+  padding: 30px;
+  font-size: 30px;
 }
 
-.menu a {
-  color: white;
-  padding: 15px;
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
