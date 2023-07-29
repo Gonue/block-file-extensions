@@ -1,6 +1,7 @@
 <template>
-  <div class="container mt-5">
+  <div class="container mt-1">
     <div class="row g-3">
+      <div> * 커스텀 확장자로 등록된 확장자를 고정 확장자로 등록시 고정확장자로 변환됩니다.</div>
       <div class="col-3">
         <h3>고정 확장자</h3>
         <h5>{{ fixedExtensions.length }}/200</h5>
@@ -23,7 +24,7 @@
       </div>
     </div>
 
-    <ErrorModal v-model="errorOccurred" title="Error" :message="errorMessage"/>
+    <ErrorModal v-model="errorOccurred" title="Error" :message="errorMessage" />
 
   </div>
 </template>
@@ -36,7 +37,7 @@ const server = axios.create({
 })
 
 export default {
-  components: {ErrorModal},
+  components: { ErrorModal },
   data() {
     return {
       fixedExtensions: [],
@@ -56,11 +57,22 @@ export default {
     },
     async addFixedExtension() {
       try {
+        if (!this.newFixedExtension.trim() || this.newFixedExtension.length > 20) {
+          this.errorMessage = '확장자는 공백이나 20자 이상일 수 없습니다.';
+          this.errorOccurred = true;
+          return;
+        }
+        const englishAlphabetRegex = /^[A-Za-z]*$/;
+        if (!englishAlphabetRegex.test(this.newFixedExtension)) {
+          this.errorMessage = '확장자는 영문자로 이루어져 있어야 합니다.';
+          this.errorOccurred = true;
+          return;
+        }
         const response = await server.post('/api/v1/fixed-extensions', { extension: this.newFixedExtension })
         this.fixedExtensions.push(response.data.result)
         this.newFixedExtension = ''
       } catch (error) {
-                      if (error.response && error.response.status === 409) {
+        if (error.response && error.response.status === 409) {
           this.errorOccurred = true;
           this.errorMessage = '이미 등록된 확장자 입니다.'
         }
@@ -83,7 +95,6 @@ export default {
 </script>
 
 <style scoped>
-
 .extension {
   flex-basis: 16.66%;
 }
@@ -93,5 +104,4 @@ export default {
   border-style: solid;
   border-radius: 8px;
 }
-
 </style>
