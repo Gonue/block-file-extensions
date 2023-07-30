@@ -20,7 +20,7 @@
 
 ### ERD 고려사항
 
-<img width="679" alt="image" src="https://github.com/Gonue/block-file-extensions/assets/109960034/78edafe8-5980-4e8b-8967-4bd375e8bf7d">
+<img width="680" alt="image" src="https://github.com/Gonue/block-file-extensions/assets/109960034/30bcd939-02f3-495e-8dde-9063540ab67b">
 
 
 처음의 경우 위와 같은 단일테이블로 type 필드는 fixed 또는 custom을 가지게끔 생각하였습니다.
